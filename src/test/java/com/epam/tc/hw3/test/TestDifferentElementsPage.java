@@ -3,6 +3,8 @@ package com.epam.tc.hw3.test;
 import com.epam.tc.hw3.pages.DifferentElementsPage;
 import com.epam.tc.hw3.pages.HeaderMenuPage;
 import com.epam.tc.hw3.pages.MainPage;
+import java.util.Iterator;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class TestDifferentElementsPage extends AbstractTest {
@@ -41,8 +43,12 @@ public class TestDifferentElementsPage extends AbstractTest {
         headerMenuPage.openDifferentElementsPage();
         differentElementsPage.setupDifferentElementPage();
 
-        softly.assertThat(differentElementsPage.verifyLogs()
-                .listIterator().next().isDisplayed());
+        Iterator<WebElement> webElementIterator = differentElementsPage.verifyLogs().iterator();
+
+        while (webElementIterator.hasNext()) {
+
+            softly.assertThat(webElementIterator.next().isDisplayed());
+        }
     }
 
 }

@@ -2,12 +2,15 @@ package com.epam.tc.hw3.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends AbstractPage {
 
+    private final String scrollFooter = "window.scrollBy(0,500)";
+    private final String scrollHeader = "window.scrollBy(0,-500)";
     @FindBy(css = ".icons-benefit.icon-practise")
     private WebElement practiseIcon;
     @FindBy(css = ".icons-benefit.icon-custom")
@@ -81,4 +84,15 @@ public class MainPage extends AbstractPage {
         textsList.add(baseText.getText());
         return textsList;
     }
+
+    public void scrollUp() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript(scrollHeader);
+    }
+
+    public void scrollDown() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript(scrollFooter);
+    }
+
 }

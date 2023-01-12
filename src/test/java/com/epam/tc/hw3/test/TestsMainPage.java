@@ -3,7 +3,8 @@ package com.epam.tc.hw3.test;
 import com.epam.tc.hw3.pages.HeaderMenuPage;
 import com.epam.tc.hw3.pages.LeftMenuPage;
 import com.epam.tc.hw3.pages.MainPage;
-import org.openqa.selenium.JavascriptExecutor;
+import java.util.Iterator;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class TestsMainPage extends AbstractTest {
@@ -11,8 +12,7 @@ public class TestsMainPage extends AbstractTest {
     MainPage mainPage;
     HeaderMenuPage headerMenuPage;
     LeftMenuPage leftMenuPage;
-    private final String scrollFooter = "window.scrollBy(0,500)";
-    private final String scrollHeader = "window.scrollBy(0,-500)";
+
 
     @Test(priority = 1, dataProviderClass = DataProviderTest.class, dataProvider = "browserTitleCorrectData")
     public void verifyBrowserTitle(String result) {
@@ -38,20 +38,26 @@ public class TestsMainPage extends AbstractTest {
     public void verifyHeaderMenuElements() {
         headerMenuPage = new HeaderMenuPage(driver);
 
-        softly.assertThat(headerMenuPage.verifyHeaderMenuElements()
-                .listIterator().next().isDisplayed());
+        Iterator<WebElement> webElementIterator = headerMenuPage.verifyHeaderMenuElements().iterator();
+
+        while (webElementIterator.hasNext()) {
+
+            softly.assertThat(webElementIterator.next().isDisplayed());
+        }
     }
 
     @Test(priority = 4, description = "Assert that there are 4 images on the Index Page and they are displayed")
     public void verifyImages() {
         mainPage = new MainPage(driver);
 
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        mainPage.scrollDown();
 
-        jse.executeScript(scrollFooter);
+        Iterator<WebElement> webElementIterator = mainPage.getIconsHomePage().iterator();
 
-        softly.assertThat(mainPage.getIconsHomePage()
-                .listIterator().next().isDisplayed());
+        while (webElementIterator.hasNext()) {
+
+            softly.assertThat(webElementIterator.next().isDisplayed());
+        }
     }
 
     @Test(priority = 5, description = "Assert that there are 4 texts "
@@ -67,8 +73,6 @@ public class TestsMainPage extends AbstractTest {
             + "and check that there is “Frame Button” in the iframe")
     public void verifyFrame() {
         mainPage = new MainPage(driver);
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript(scrollHeader);
 
         softly.assertThat(mainPage.getFrame().isDisplayed());
 
@@ -77,14 +81,19 @@ public class TestsMainPage extends AbstractTest {
         softly.assertThat(mainPage.getFrameButton().isDisplayed());
 
         mainPage.switchToHomePage();
+        mainPage.scrollUp();
     }
 
     @Test(priority = 7, description = "Assert that there are 5 items "
             + "in the Left Section are displayed and they have proper text")
     public void verifyLeftMenuElements() {
         leftMenuPage = new LeftMenuPage(driver);
-        softly.assertThat(leftMenuPage.verifyLeftMenu()
-                .listIterator().next().isDisplayed());
-    }
 
+        Iterator<WebElement> webElementIterator = leftMenuPage.verifyLeftMenu().iterator();
+
+        while (webElementIterator.hasNext()) {
+
+            softly.assertThat(webElementIterator.next().isDisplayed());
+        }
+    }
 }

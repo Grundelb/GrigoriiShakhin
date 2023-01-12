@@ -1,6 +1,5 @@
 package com.epam.tc.hw3.pages;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
@@ -22,10 +21,6 @@ public class LeftMenuPage extends AbstractPage {
 
     public LeftMenuPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    protected void openPage() {
     }
 
     public List<WebElement> verifyLeftMenu() {

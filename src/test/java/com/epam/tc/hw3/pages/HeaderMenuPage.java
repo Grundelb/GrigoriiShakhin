@@ -55,11 +55,6 @@ public class HeaderMenuPage extends AbstractPage {
         return metalsAndColorsHeaderMenu;
     }
 
-    @Override
-    protected void openPage() {
-
-    }
-
     public void login() {
         dropdownUserIcon.click();
         waitForElementLocatedBy(driver, fieldUserName);

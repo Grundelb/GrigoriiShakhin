@@ -8,31 +8,27 @@ import org.openqa.selenium.support.FindBy;
 
 public class DifferentElementsPage extends AbstractPage {
 
-    @FindBy(xpath = "//*[text()[contains(.,'Water')]]/input")
+    @FindBy(xpath = "//*[contains(.,'Water')]/input")
     private WebElement waterCheckbox;
-    @FindBy(xpath = "//*[text()[contains(.,'Wind')]]/input")
+    @FindBy(xpath = "//*[contains(.,'Wind')]/input")
     private WebElement windCheckbox;
-    @FindBy(xpath = "//*[text()[contains(.,'Selen')]]/input")
+    @FindBy(xpath = "//*[contains(.,'Selen')]/input")
     private WebElement selenRadioButton;
     @FindBy(className = "colors")
     private WebElement colorsDropDownMenu;
     @FindBy(xpath = "//option[text()='Yellow']")
     private WebElement yellowOptionColors;
-    @FindBy(xpath = "//li[text()[contains(.,'Water: condition changed to true')]]")
+    @FindBy(xpath = "//li[contains(.,'Water: condition changed to true')]")
     private WebElement containWaterLog;
-    @FindBy(xpath = "//li[text()[contains(.,'Wind: condition changed to true')]]")
+    @FindBy(xpath = "//li[contains(.,'Wind: condition changed to true')]")
     private WebElement containWindLog;
-    @FindBy(xpath = "//li[text()[contains(.,'metal: value changed to  Selen')]]")
+    @FindBy(xpath = "//li[contains(.,'metal: value changed to  Selen')]")
     private WebElement containSelenLog;
-    @FindBy(xpath = "//li[text()[contains(.,'Colors: value changed to Yellow')]]")
+    @FindBy(xpath = "//li[contains(.,'Colors: value changed to Yellow')]")
     private WebElement containYellowLog;
 
     public DifferentElementsPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    protected void openPage() {
     }
 
     public void setupDifferentElementPage() {
