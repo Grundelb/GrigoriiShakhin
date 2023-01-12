@@ -4,6 +4,8 @@ import com.epam.tc.hw3.pages.DifferentElementsPage;
 import com.epam.tc.hw3.pages.HeaderMenuPage;
 import com.epam.tc.hw3.pages.MainPage;
 import java.util.Iterator;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -18,18 +20,16 @@ public class TestDifferentElementsPage extends AbstractTest {
         mainPage = new MainPage(driver);
         mainPage.openPage();
         String actualTitle = mainPage.getBrowserTitle();
-        softly.assertThat(actualTitle).isEqualTo(result);
+        Assertions.assertThat(actualTitle).isEqualTo(result);
     }
 
     @Test(priority = 2, description = "Assert Username is loggined", dataProviderClass = DataProviderTest.class,
             dataProvider = "userNameCorrectData")
     public void verifyUserName(String result) {
         headerMenuPage = new HeaderMenuPage(driver);
-
         headerMenuPage.login();
         String actualUserName = headerMenuPage.getUserNameHeaderView();
-
-        softly.assertThat(actualUserName).isEqualTo(result);
+        Assertions.assertThat(actualUserName).isEqualTo(result);
     }
 
     @Test(priority = 3, description = "Assert that"
@@ -39,16 +39,14 @@ public class TestDifferentElementsPage extends AbstractTest {
     public void verifyDifferentElementsPage() {
         headerMenuPage = new HeaderMenuPage(driver);
         differentElementsPage = new DifferentElementsPage(driver);
-
+        softly = new SoftAssertions();
         headerMenuPage.openDifferentElementsPage();
         differentElementsPage.setupDifferentElementPage();
-
         Iterator<WebElement> webElementIterator = differentElementsPage.verifyLogs().iterator();
-
         while (webElementIterator.hasNext()) {
-
             softly.assertThat(webElementIterator.next().isDisplayed());
         }
+        softly.assertAll();
     }
 
 }
