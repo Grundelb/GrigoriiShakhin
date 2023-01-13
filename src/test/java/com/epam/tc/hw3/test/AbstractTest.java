@@ -5,9 +5,8 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+
 
 public abstract class AbstractTest {
 
@@ -26,15 +25,5 @@ public abstract class AbstractTest {
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    @BeforeMethod
-    void initializeSoftAssert() {
-        softly = new SoftAssertions();
-    }
-
-    @AfterMethod
-    protected void completeSoftAssert() {
-        softly.assertAll();
     }
 }
