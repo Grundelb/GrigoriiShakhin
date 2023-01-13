@@ -66,13 +66,19 @@
         <profile>
             <id>Mainsuite</id>
             <properties>
-                <suite.xml.file>testng.xml</suite.xml.file>
+                <suite.xml.file>test_calc.xml</suite.xml.file>
             </properties>
         </profile>
         <profile>
             <id>ex1ex2</id>
             <properties>
                 <suite.xml.file>ex1ex2.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw4</id>
+            <properties>
+                <suite.xml.file>hw4.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>
