@@ -2,10 +2,12 @@ package com.epam.tc.hw4.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Getter
 public class HeaderMenuPage extends AbstractPage {
     private final String credentionalsUserName = "Roman";
     private final String credentionalsUserPassword = "Jdi1234";
@@ -20,7 +22,7 @@ public class HeaderMenuPage extends AbstractPage {
     private WebElement fieldUserPassword;
     @FindBy(id = "login-button")
     private WebElement loginButton;
-    @FindBy(id = "user-name")
+    @FindBy(css = "#user-name")
     private WebElement userNameHeaderView;
     @FindBy(partialLinkText = "HOME")
     private WebElement homeHeaderMenu;
@@ -35,34 +37,40 @@ public class HeaderMenuPage extends AbstractPage {
         super(driver);
     }
 
-    public String getUserNameHeaderView() {
+    public String getUserNameHeaderText() {
         return userNameHeaderView.getText();
     }
 
-    public WebElement getHomeHeaderMenu() {
-        return homeHeaderMenu;
-    }
-
-    public WebElement getContactFormHeaderMenu() {
-        return contactFormHeaderMenu;
-    }
-
-    public WebElement getServiceHeaderMenu() {
-        return serviceHeaderMenu;
-    }
-
-    public WebElement getMetalsAndColorsHeaderMenu() {
-        return metalsAndColorsHeaderMenu;
-    }
-
-    public void login() {
+    public void clickOnDropdownUserIcon() {
         dropdownUserIcon.click();
-        waitForElementLocatedBy(driver, fieldUserName);
+    }
+
+    public void clickOnFieldUserName() {
         fieldUserName.click();
-        fieldUserName.sendKeys(credentionalsUserName);
+    }
+
+    public void clickOnFieldUserPassword() {
         fieldUserPassword.click();
-        fieldUserPassword.sendKeys(credentionalsUserPassword);
+    }
+
+    public void clickOnloginButton() {
         loginButton.click();
+    }
+
+    public void enterUserName() {
+        fieldUserName.sendKeys(credentionalsUserName);
+    }
+
+    public void enterUserPassword() {
+        fieldUserPassword.sendKeys(credentionalsUserPassword);
+    }
+
+    public void clickOnServiceHeaderMenu() {
+        serviceHeaderMenu.click();
+    }
+
+    public void clickOnDifferentElementsServiceElement() {
+        differentElementsServiceElement.click();
     }
 
     public List<WebElement> verifyHeaderMenuElements() {
@@ -73,11 +81,4 @@ public class HeaderMenuPage extends AbstractPage {
         webElementList.add(metalsAndColorsHeaderMenu);
         return webElementList;
     }
-
-    public void openDifferentElementsPage() {
-        serviceHeaderMenu.click();
-        waitForElementLocatedBy(driver, differentElementsServiceElement);
-        differentElementsServiceElement.click();
-    }
-
 }

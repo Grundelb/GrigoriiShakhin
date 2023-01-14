@@ -2,10 +2,12 @@ package com.epam.tc.hw4.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Getter
 public class DifferentElementsPage extends AbstractPage {
 
     @FindBy(xpath = "//*[contains(.,'Water')]/input")
@@ -31,12 +33,23 @@ public class DifferentElementsPage extends AbstractPage {
         super(driver);
     }
 
-    public void setupDifferentElementPage() {
-        waitForElementLocatedBy(driver, waterCheckbox);
+    public void clickOnWaterCheckbox() {
         waterCheckbox.click();
+    }
+
+    public void clickOnWindCheckbox() {
         windCheckbox.click();
+    }
+
+    public void clickOnSelenRadioButton() {
         selenRadioButton.click();
+    }
+
+    public void clickOnColorsDropDownMenu() {
         colorsDropDownMenu.click();
+    }
+
+    public void clickOnYellowOptionColors() {
         yellowOptionColors.click();
     }
 

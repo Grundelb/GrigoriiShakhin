@@ -1,5 +1,6 @@
 package com.epam.tc.hw4.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -16,7 +17,7 @@ public class AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
-    protected WebElement waitForElementLocatedBy(WebDriver driver, WebElement webElement) {
+    public WebElement waitForElementLocatedBy(WebDriver driver, WebElement webElement) {
         return new WebDriverWait(driver, waitTimeoutSeconds)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
