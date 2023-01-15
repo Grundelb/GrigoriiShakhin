@@ -5,12 +5,11 @@ import com.epam.tc.hw4.pages.HeaderMenuPage;
 import com.epam.tc.hw4.pages.LeftMenuPage;
 import com.epam.tc.hw4.pages.MainPage;
 import io.qameta.allure.Step;
+import java.util.Iterator;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.Iterator;
 
 public class AssertionStep extends ActionStep {
 
@@ -24,6 +23,7 @@ public class AssertionStep extends ActionStep {
         differentElementsPage = new DifferentElementsPage(driver);
         headerMenuPage = new HeaderMenuPage(driver);
         mainPage = new MainPage(driver);
+        leftMenuPage = new LeftMenuPage(driver);
     }
 
     @Step
@@ -79,8 +79,8 @@ public class AssertionStep extends ActionStep {
 
     @Step
     public void assertThatFrameIsDisplayed() {
-        mainPage.switchToFrame();
         Assertions.assertThat(mainPage.getFrame().isDisplayed());
+        mainPage.switchToFrame();
     }
 
     @Step

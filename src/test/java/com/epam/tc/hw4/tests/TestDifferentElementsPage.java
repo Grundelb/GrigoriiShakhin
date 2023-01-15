@@ -1,15 +1,21 @@
 package com.epam.tc.hw4.tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
+@Feature("Different Elements Page")
+@Story("Check Different Elements Page options")
 public class TestDifferentElementsPage extends AbstractTest {
-    @Test(priority = 1, dataProviderClass = DataProviderTest.class, dataProvider = "browserTitleCorrectData")
+    @Test(priority = 1, description = "Assert that browser title is displayed",
+            dataProviderClass = DataProviderTest.class, dataProvider = "browserTitleCorrectData")
     public void verifyBrowserTitle(String result) {
         actionStep.openHomePage();
         assertionStep.assertThatBrowserTitleIsCorrect(result);
     }
 
-    @Test(priority = 2, description = "Assert Username is loggined", dataProviderClass = DataProviderTest.class,
+    @Test(priority = 2, description = "Assert that user name is displayed",
+            dataProviderClass = DataProviderTest.class,
             dataProvider = "userNameCorrectData")
     public void verifyUserName(String result) {
         actionStep.login();

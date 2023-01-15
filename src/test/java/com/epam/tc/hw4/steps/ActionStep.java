@@ -26,7 +26,7 @@ public class ActionStep extends AbstractStep {
         mainPage = new MainPage(driver);
     }
 
-    @Step
+    @Step("I choose elements on Different Elements page")
     public void setupDifferentElementPage() {
         differentElementsPage.waitForElementLocatedBy(driver, differentElementsPage.getWaterCheckbox());
         differentElementsPage.clickOnWaterCheckbox();
@@ -36,7 +36,7 @@ public class ActionStep extends AbstractStep {
         differentElementsPage.clickOnYellowOptionColors();
     }
 
-    @Step
+    @Step ("I log in")
     public void login() {
         headerMenuPage.clickOnDropdownUserIcon();
         headerMenuPage.waitForElementLocatedBy(driver, headerMenuPage.getFieldUserName());
@@ -47,7 +47,7 @@ public class ActionStep extends AbstractStep {
         headerMenuPage.clickOnloginButton();
     }
 
-    @Step
+    @Step("I navigate to Different Elements page")
     public void openDifferentElementsPage() {
         headerMenuPage.clickOnServiceHeaderMenu();
         headerMenuPage.waitForElementLocatedBy(driver,
@@ -55,18 +55,18 @@ public class ActionStep extends AbstractStep {
         headerMenuPage.clickOnDifferentElementsServiceElement();
     }
 
-    @Step
+    @Step ("I open home page")
     public void openHomePage() {
         mainPage.openPage();
     }
 
-    @Step
+    @Step("I scroll page up")
     public void scrollUp() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript(scrollHeader);
     }
 
-    @Step
+    @Step("I scroll page down")
     public void scrollDown() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript(scrollFooter);
