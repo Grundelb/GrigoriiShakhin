@@ -30,4 +30,11 @@ public class DataProviderTest {
                 {"ROMAN IOVLEV"}
         };
     }
+
+    @DataProvider
+    public static Object[][] userNameIncorrectData() {
+        return new Object[][]{
+                {"XXXX"}
+        };
+    }
 }
