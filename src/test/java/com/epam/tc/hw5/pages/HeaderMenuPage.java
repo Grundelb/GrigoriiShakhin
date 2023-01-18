@@ -14,6 +14,8 @@ public class HeaderMenuPage extends AbstractPage {
 
     @FindBy(xpath = "//a[text()='Different elements']")
     private WebElement differentElementsServiceElement;
+    @FindBy(xpath = "//a[text()='User Table ']")
+    private WebElement userTableServiceElement;
     @FindBy(id = "user-icon")
     private WebElement dropdownUserIcon;
     @FindBy(id = "name")
@@ -72,6 +74,8 @@ public class HeaderMenuPage extends AbstractPage {
     public void clickOnDifferentElementsServiceElement() {
         differentElementsServiceElement.click();
     }
+
+    public void clickOnUserTableServiceElement() {userTableServiceElement.click();}
 
     public List<WebElement> verifyHeaderMenuElements() {
         List<WebElement> webElementList = new ArrayList<>();

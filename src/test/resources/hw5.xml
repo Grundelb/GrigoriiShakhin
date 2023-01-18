@@ -3,14 +3,15 @@
 
 <suite name="BasicSuite" verbose="2" parallel="none">
     <!-- enable option below to stick to packages for test execution -->
-    <!-- <test name="GithubTestViaCucumberAndTestNG">
+     <test name="hw5_bdd">
         <packages>
-            <package name="com.epam.byta.bdd.demo.tests" />
+            <package name="com.epam.tc.hw5.steps_bdd" />
         </packages>
-    </test> -->
+    </test>
     <test name="hw5">
         <classes>
-            <class name="com.epam.tc.hw5.tests.TestDifferentElementsPage" />
+            <class name="com.epam.tc.hw5.steps_bdd.StepsDifferentElements" />
+            <class name="com.epam.tc.hw5.steps_bdd.VipUserTableSteps" />
         </classes>
     </test>
 </suite>
