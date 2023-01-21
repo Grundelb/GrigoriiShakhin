@@ -2,6 +2,7 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,15 +68,20 @@ public class HeaderMenuPage extends AbstractPage {
         fieldUserPassword.sendKeys(credentionalsUserPassword);
     }
 
-    public void clickOnServiceHeaderMenu() {
-        serviceHeaderMenu.click();
+    public void clickOnServiceHeaderMenu(String element) {
+        if (element.equals("Service")) {
+            serviceHeaderMenu.click();
+        }
     }
 
-    public void clickOnDifferentElementsServiceElement() {
-        differentElementsServiceElement.click();
+    public void clickOnElementsServiceElement(String element) {
+        if (element.equals("Different Elements")) {
+            differentElementsServiceElement.click();
+        }
+        if (element.equals("User Table")) {
+            userTableServiceElement.click();
+        }
     }
-
-    public void clickOnUserTableServiceElement() {userTableServiceElement.click();}
 
     public List<WebElement> verifyHeaderMenuElements() {
         List<WebElement> webElementList = new ArrayList<>();

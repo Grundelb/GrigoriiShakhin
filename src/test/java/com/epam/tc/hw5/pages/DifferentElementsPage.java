@@ -2,10 +2,12 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 
 @Getter
 public class DifferentElementsPage extends AbstractPage {
@@ -28,29 +30,36 @@ public class DifferentElementsPage extends AbstractPage {
     private WebElement containSelenLog;
     @FindBy(xpath = "//li[contains(.,'Colors: value changed to Yellow')]")
     private WebElement containYellowLog;
+    @FindBy(xpath = "//ul[@class='panel-body-list logs']")
+    private WebElement logsPanelList;
 
     public DifferentElementsPage(WebDriver driver) {
         super(driver);
     }
 
-    public void clickOnWaterCheckbox() {
-        waterCheckbox.click();
+    public void clickOnCheckbox(String string) {
+        if (string.equals("Water")) {
+            waterCheckbox.click();
+        }
+        if (string.equals("Wind")) {
+            windCheckbox.click();
+        }
     }
 
-    public void clickOnWindCheckbox() {
-        windCheckbox.click();
-    }
-
-    public void clickOnSelenRadioButton() {
-        selenRadioButton.click();
+    public void clickOnRadioButton(String string) {
+        if (string.equals("Selen")){
+            selenRadioButton.click();
+        }
     }
 
     public void clickOnColorsDropDownMenu() {
         colorsDropDownMenu.click();
     }
 
-    public void clickOnYellowOptionColors() {
-        yellowOptionColors.click();
+    public void clickOnOptionColors(String string) {
+        if (string.equals("Yellow")){
+            yellowOptionColors.click();
+        }
     }
 
     public List<WebElement> verifyLogs() {
@@ -61,5 +70,4 @@ public class DifferentElementsPage extends AbstractPage {
         list.add(containYellowLog);
         return list;
     }
-
 }

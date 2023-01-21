@@ -2,16 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="BasicSuite" verbose="2" parallel="none">
-    <!-- enable option below to stick to packages for test execution -->
-     <test name="hw5_bdd">
-        <packages>
-            <package name="com.epam.tc.hw5.steps_bdd" />
-        </packages>
-    </test>
     <test name="hw5">
         <classes>
-            <class name="com.epam.tc.hw5.steps_bdd.StepsDifferentElements" />
-            <class name="com.epam.tc.hw5.steps_bdd.VipUserTableSteps" />
+            <class name="com.epam.tc.hw5.runner.RunCucumberTests" />
         </classes>
     </test>
 </suite>
