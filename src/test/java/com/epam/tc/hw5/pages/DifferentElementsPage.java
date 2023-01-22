@@ -46,6 +46,16 @@ public class DifferentElementsPage extends AbstractPage {
         }
     }
 
+    public WebElement getCheckbox(String string) {
+        WebElement checkbox = null;
+        if (string.equals("Water")) {
+           checkbox = getWaterCheckbox();
+        } else if (string.equals("Wind")) {
+            checkbox = getWindCheckbox();
+        }
+        return checkbox;
+    }
+
     public void clickOnRadioButton(String string) {
         if (string.equals("Selen")){
             selenRadioButton.click();

@@ -1,21 +1,10 @@
 package com.epam.tc.hw5.steps_bdd;
 
-import com.epam.tc.hw5.common.TestContext;
-import com.epam.tc.hw5.pages.HeaderMenuPage;
-import com.epam.tc.hw5.pages.UserTablePage;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-
-public class UserTableSteps {
-
-    private WebDriver driver = TestContext.getInstance().get("driver", ChromeDriver.class);
-    private HeaderMenuPage headerMenuPage = new HeaderMenuPage(driver);
-    private UserTablePage userTablePage = new UserTablePage(driver);
+public class UserTableSteps extends AbstractStep{
 
     @When("I select vip checkbox for Sergey Ivan")
     public void selectCheckboxSergeyIvan() {

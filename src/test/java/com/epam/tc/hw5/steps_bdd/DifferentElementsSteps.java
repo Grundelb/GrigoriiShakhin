@@ -1,24 +1,25 @@
 package com.epam.tc.hw5.steps_bdd;
 
 import com.epam.tc.hw5.common.TestContext;
-import com.epam.tc.hw5.pages.DifferentElementsPage;
-import com.epam.tc.hw5.pages.HeaderMenuPage;
-import io.cucumber.java.en.Given;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.Iterator;
 
-public class DifferentElementsSteps {
-    private WebDriver driver = TestContext.getInstance().get("driver", ChromeDriver.class);
-    private DifferentElementsPage differentElementsPage = new DifferentElementsPage(driver);
-    private HeaderMenuPage headerMenuPage = new HeaderMenuPage(driver);
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class DifferentElementsSteps extends AbstractStep {
 
     @When("I select {string} checkbox")
     public void setupDifferentElementPageCheckboxes(String checkboxName) {
+        WebDriver driver = TestContext.getInstance().get("driver", ChromeDriver.class);
+        differentElementsPage.waitForElementLocatedBy(driver,
+                differentElementsPage.getCheckbox(checkboxName));
         differentElementsPage.clickOnCheckbox(checkboxName);
     }
 
@@ -34,11 +35,15 @@ public class DifferentElementsSteps {
     }
 
     @Then("Log rows should contain following values:")
-    public void assertThatDifferentElementsPageIsCorrect(String Description) {
+    public void assertThatDifferentElementsPageIsCorrect(DataTable dataTable) {
         SoftAssertions softly = new SoftAssertions();
-        Iterator<WebElement> webElementIterator = differentElementsPage.verifyLogs().iterator();
-        while (webElementIterator.hasNext()) {
-            softly.assertThat(webElementIterator.next().getText().contains(Description));
+       List<List<String>> list = dataTable.asLists(String.class);
+        List<String> logs = new ArrayList<>(list.get(0));
+
+        for (WebElement element: differentElementsPage.verifyLogs()) {
+            for (String str:logs) {
+                softly.assertThat(element.getText().contains(str)).isTrue();
+            }
         }
         softly.assertAll();
     }
