@@ -2,7 +2,6 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

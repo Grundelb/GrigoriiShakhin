@@ -1,4 +1,4 @@
-package com.epam.tc.hw5.steps_bdd;
+package com.epam.tc.hw5.steps.bdd;
 
 import com.epam.tc.hw5.common.TestContext;
 import com.epam.tc.hw5.pages.DifferentElementsPage;
@@ -13,13 +13,11 @@ public abstract class AbstractStep {
     protected DifferentElementsPage differentElementsPage;
     protected UserTablePage userTablePage;
 
-
-    public AbstractStep(){
+    public AbstractStep() {
         WebDriver driver = TestContext.getInstance().get("driver", WebDriver.class);
         headerMenuPage = new HeaderMenuPage(driver);
         mainPage = new MainPage(driver);
         differentElementsPage = new DifferentElementsPage(driver);
         userTablePage = new UserTablePage(driver);
     }
-
 }

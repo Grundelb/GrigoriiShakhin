@@ -1,12 +1,12 @@
 package com.epam.tc.hw5.hooks;
 
+import com.epam.tc.hw5.common.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import com.epam.tc.hw5.common.TestContext;
 
 public class BaseHook {
     private WebDriver driver;

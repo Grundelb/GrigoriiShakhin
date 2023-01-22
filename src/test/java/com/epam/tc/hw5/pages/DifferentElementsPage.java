@@ -2,12 +2,11 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
+
 
 @Getter
 public class DifferentElementsPage extends AbstractPage {
@@ -49,7 +48,7 @@ public class DifferentElementsPage extends AbstractPage {
     public WebElement getCheckbox(String string) {
         WebElement checkbox = null;
         if (string.equals("Water")) {
-           checkbox = getWaterCheckbox();
+            checkbox = getWaterCheckbox();
         } else if (string.equals("Wind")) {
             checkbox = getWindCheckbox();
         }
@@ -57,7 +56,7 @@ public class DifferentElementsPage extends AbstractPage {
     }
 
     public void clickOnRadioButton(String string) {
-        if (string.equals("Selen")){
+        if (string.equals("Selen")) {
             selenRadioButton.click();
         }
     }
@@ -67,7 +66,7 @@ public class DifferentElementsPage extends AbstractPage {
     }
 
     public void clickOnOptionColors(String string) {
-        if (string.equals("Yellow")){
+        if (string.equals("Yellow")) {
             yellowOptionColors.click();
         }
     }
