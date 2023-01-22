@@ -2,7 +2,6 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,8 +18,7 @@ public class LeftMenuPage extends AbstractPage {
     @FindBy(partialLinkText = "Elements packs")
     private WebElement elementsPacksLeftMenu;
 
-    public LeftMenuPage(WebDriver driver) {
-        super(driver);
+    public LeftMenuPage() {
     }
 
     public List<WebElement> verifyLeftMenu() {

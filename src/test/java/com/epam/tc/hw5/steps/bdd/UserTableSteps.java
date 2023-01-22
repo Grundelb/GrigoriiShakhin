@@ -1,17 +1,14 @@
 package com.epam.tc.hw5.steps.bdd;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.stream.Collectors.toSet;
-import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.WebElement;
 
 public class UserTableSteps extends AbstractStep {
 
@@ -47,30 +44,29 @@ public class UserTableSteps extends AbstractStep {
 
     @Then("{int} checkboxes should be displayed on Users Table on User Table Page")
     public void checkboxesShouldBeDisplayedOnUsersTableOnUserTablePage(Integer checkboxesCount) {
-        assertThat(userTablePage.getCheckboxes()).hasSize(checkboxesCount);
+        assertThat(userTablePage.getAllCheckboxes()).hasSize(checkboxesCount);
     }
 
     @Then("User table should contain following values:")
     public void userTableShouldContainFollowingValues(DataTable dataTable) {
         SoftAssertions softly = new SoftAssertions();
         List<List<String>> list = dataTable.asLists();
-        List<Integer> numbersList = new ArrayList<>(Integer.parseInt(list.get(0).toString()));
-        List<String> usersList = new ArrayList<>(list.get(1));
-        List<String> descriptionsList = new ArrayList<>(list.get(1));
+        List<List<String>> listData = new ArrayList<>(list);
+        listData.remove(0);
 
-        boolean numbers = userTablePage.getTableElements()
+        boolean numbers = userTablePage.getNumberType()
                 .stream()
-                .anyMatch(element -> numbersList
+                .anyMatch(element -> listData.get(0)
                         .contains(Integer.parseInt(element.getText())));
         softly.assertThat(numbers).isTrue();
-        boolean users = userTablePage.getTableElements()
+        boolean users = userTablePage.getUsers()
                 .stream()
-                .anyMatch(element -> usersList
+                .anyMatch(element -> listData.get(1)
                         .contains(element.getText()));
         softly.assertThat(users).isTrue();
-        boolean text = userTablePage.getTableElements()
+        boolean text = userTablePage.getDescriptionTexts()
                 .stream()
-                .anyMatch(element -> descriptionsList
+                .anyMatch(element -> listData.get(2)
                         .contains(element.getText()));
         softly.assertThat(text).isTrue();
 
@@ -78,22 +74,10 @@ public class UserTableSteps extends AbstractStep {
     }
 
     @Then("droplist should contain values in column Type for user Roman")
-    public void droplistShouldContainValuesInColumnTypeForUserRoman(DataTable dataTable) {
-        SoftAssertions softly = new SoftAssertions();
-        List<List<String>> list = dataTable.asLists();
-        List<String> logs = new ArrayList<>(list.get(0));
-
-        for (WebElement element : userTablePage.getDropDownValues()) {
-            int i = 0;
-            for (String str : logs) {
-                if (element.getText().contains(str)) {
-                    i++;
-                }
-                if (i > 0) {
-                    softly.assertThat(true).isTrue();
-                }
-            }
-        }
-        softly.assertAll();
+    public void droplistShouldContainValuesInColumnTypeForUserRoman(List<String> expectedCheckboxes) {
+        assertThat(userTablePage.getCheckBoxes())
+                .extracting(WebElement::getText)
+                .as("Some of the checkboxes are not as expected")
+                .containsAll(expectedCheckboxes);
     }
 }

@@ -1,33 +1,18 @@
 package com.epam.tc.hw5.hooks;
 
-import com.epam.tc.hw5.common.TestContext;
+import com.epam.tc.hw5.driver.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseHook {
-    private WebDriver driver;
-
-    @BeforeAll
-    public static void setUpAll() {
-        WebDriverManager.chromedriver().setup();
-    }
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        TestContext.getInstance().set("driver", driver);
+        DriverManager.setupDriver();
     }
 
     @After
     public void teardownDriver() {
-        if (driver != null) {
-            driver.quit();
-        }
-        TestContext.getInstance().clear();
+        DriverManager.quitDriver();
     }
 }

@@ -2,9 +2,7 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,11 +18,35 @@ public class UserTablePage extends AbstractPage {
     private WebElement userCheckbox;
     @FindBy(xpath = "(//option[contains(text(),'Manager')])[1]")
     private WebElement managerCheckbox;
-    private final String DROPDOWN_LIST = "//option[contains(., 'Admin')]";
-    private final String USERS_LIST = "//tbody//a";
-    private final String DESCRIPTION_TEXT_LIST = "//tbody//span";
-    private final String CHECKBOXES_LIST = "//tbody//input";
-    private final String TABLE_ELEMENTS = "//table[@id='user-table']";
+    @FindBy(css = "#user-table>tbody>tr>td:nth-child(3)>a")
+    private List<WebElement> users;
+    @FindBy(css = "#user-table>tbody>tr>td:nth-child(4)>div.user-descr>span")
+    private List<WebElement> descriptionTexts;
+    @FindBy(css = "#user-table>tbody>tr>td:nth-child(4)>div.user-descr>input[type='checkbox']")
+    private List<WebElement> checkBoxes;
+    @FindBy(css = "#user-table>tbody>tr>td:nth-child(2)>select")
+    public List<WebElement> numberType;
+    private static final String DROPDOWN_LIST = "//option[contains(., 'Admin')]";
+    private static final String USERS_LIST = "//tbody//a";
+    private static final String DESCRIPTION_TEXT_LIST = "//tbody//span";
+    private static final String CHECKBOXES_LIST = "//tbody//input";
+
+    public List<WebElement> getUsers() {
+        return users;
+    }
+
+
+    public List<WebElement> getCheckBoxes() {
+        return checkBoxes;
+    }
+
+    public List<WebElement> getUserTable() {
+        return userTable;
+    }
+
+    public List<WebElement> getNumberType() {
+        return numberType;
+    }
 
     private List<WebElement> userTable;
 
@@ -32,8 +54,8 @@ public class UserTablePage extends AbstractPage {
         return vipUserTableLogRow;
     }
 
-    public UserTablePage(WebDriver driver) {
-        super(driver);
+    public UserTablePage() {
+
     }
 
     public void clickOnSergeiIvanUserTableCheckbox() {
@@ -59,13 +81,8 @@ public class UserTablePage extends AbstractPage {
         return userTable;
     }
 
-    public List<WebElement> getCheckboxes() {
+    public List<WebElement> getAllCheckboxes() {
         userTable = driver.findElements(By.xpath(CHECKBOXES_LIST));
-        return userTable;
-    }
-
-    public List<WebElement> getTableElements() {
-        userTable = driver.findElements(By.xpath(TABLE_ELEMENTS));
         return userTable;
     }
 

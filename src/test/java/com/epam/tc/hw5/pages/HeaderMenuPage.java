@@ -3,7 +3,6 @@ package com.epam.tc.hw5.pages;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -35,8 +34,7 @@ public class HeaderMenuPage extends AbstractPage {
     @FindBy(partialLinkText = "METALS & COLORS")
     private WebElement metalsAndColorsHeaderMenu;
 
-    public HeaderMenuPage(WebDriver driver) {
-        super(driver);
+    public HeaderMenuPage() {
     }
 
     public String getUserNameHeaderText() {

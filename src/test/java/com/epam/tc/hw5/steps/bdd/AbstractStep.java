@@ -14,10 +14,9 @@ public abstract class AbstractStep {
     protected UserTablePage userTablePage;
 
     public AbstractStep() {
-        WebDriver driver = TestContext.getInstance().get("driver", WebDriver.class);
-        headerMenuPage = new HeaderMenuPage(driver);
-        mainPage = new MainPage(driver);
-        differentElementsPage = new DifferentElementsPage(driver);
-        userTablePage = new UserTablePage(driver);
+        headerMenuPage = new HeaderMenuPage();
+        mainPage = new MainPage();
+        differentElementsPage = new DifferentElementsPage();
+        userTablePage = new UserTablePage();
     }
 }
