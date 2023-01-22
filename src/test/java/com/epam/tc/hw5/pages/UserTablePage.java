@@ -3,6 +3,7 @@ package com.epam.tc.hw5.pages;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,6 +32,10 @@ public class UserTablePage extends AbstractPage {
     private static final String DESCRIPTION_TEXT_LIST = "//tbody//span";
     private static final String CHECKBOXES_LIST = "//tbody//input";
 
+    public UserTablePage(WebDriver driver) {
+        super(driver);
+    }
+
     public List<WebElement> getUsers() {
         return users;
     }
@@ -52,10 +57,6 @@ public class UserTablePage extends AbstractPage {
 
     public WebElement getVipUserTableLogRow() {
         return vipUserTableLogRow;
-    }
-
-    public UserTablePage() {
-
     }
 
     public void clickOnSergeiIvanUserTableCheckbox() {

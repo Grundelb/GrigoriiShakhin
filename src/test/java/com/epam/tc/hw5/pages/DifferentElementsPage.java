@@ -3,6 +3,7 @@ package com.epam.tc.hw5.pages;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,7 +32,8 @@ public class DifferentElementsPage extends AbstractPage {
     @FindBy(xpath = "//ul[@class='panel-body-list logs']")
     private WebElement logsPanelList;
 
-    public DifferentElementsPage() {
+    public DifferentElementsPage(WebDriver driver) {
+        super(driver);
     }
 
     public void clickOnCheckbox(String string) {

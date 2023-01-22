@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         plugin = "pretty",
         monochrome = true,
-        features = {"src/test/resources/feature"},
+        features = {"src/test/resources/feature/"},
         glue = {"com.epam.tc.hw5.steps.bdd"})
 
 public class RunCucumberTests extends AbstractTestNGCucumberTests {

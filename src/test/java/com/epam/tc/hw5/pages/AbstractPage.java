@@ -9,13 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractPage {
-
-    protected WebDriver driver;
     protected static final String HOMEPAGE_URL = "https://jdi-testing.github.io/jdi-light/index.html";
     protected static final int waitTimeoutSeconds = 10;
+    protected WebDriver driver;
 
-    public AbstractPage() {
-        driver = DriverManager.getDriver();
+    public AbstractPage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
 

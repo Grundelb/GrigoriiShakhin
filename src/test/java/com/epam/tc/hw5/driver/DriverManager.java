@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverManager {
 
+    private static WebDriver driver;
     private static final int PAGE_LOAD_TIMEOUT = 20;
 
     private DriverManager() {
@@ -16,7 +17,7 @@ public class DriverManager {
 
     public static void setupDriver() {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         TestContext.getInstance().set("driver", driver);
@@ -31,5 +32,4 @@ public class DriverManager {
                 webDriver.quit());
         TestContext.getInstance().clear();
     }
-
 }

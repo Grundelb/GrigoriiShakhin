@@ -15,9 +15,6 @@ public class DifferentElementsSteps extends AbstractStep {
 
     @When("I select {string} checkbox")
     public void setupDifferentElementPageCheckboxes(String checkboxName) {
-        WebDriver driver = TestContext.getInstance().get("driver", ChromeDriver.class);
-        differentElementsPage.waitForElementLocatedBy(driver,
-                differentElementsPage.getCheckbox(checkboxName));
         differentElementsPage.clickOnCheckbox(checkboxName);
     }
 
