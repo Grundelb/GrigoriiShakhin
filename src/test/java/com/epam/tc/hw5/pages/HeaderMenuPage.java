@@ -35,8 +35,7 @@ public class HeaderMenuPage extends AbstractPage {
     @FindBy(partialLinkText = "METALS & COLORS")
     private WebElement metalsAndColorsHeaderMenu;
 
-    public HeaderMenuPage(WebDriver driver) {
-        super(driver);
+    public HeaderMenuPage() {
     }
 
     public String getUserNameHeaderText() {

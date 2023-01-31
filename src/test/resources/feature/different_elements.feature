@@ -1,5 +1,5 @@
 Feature: Different elements page
-
+  @smoke
   Scenario: Different elements test
     Given I open JDI GitHub site
     And I login as user "Roman Iovlev"

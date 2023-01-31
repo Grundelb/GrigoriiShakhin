@@ -2,7 +2,8 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openqa.selenium.By;
+
+import com.epam.tc.hw5.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,41 +20,40 @@ public class UserTablePage extends AbstractPage {
     private WebElement userCheckbox;
     @FindBy(xpath = "(//option[contains(text(),'Manager')])[1]")
     private WebElement managerCheckbox;
-    @FindBy(css = "#user-table>tbody>tr>td:nth-child(3)>a")
-    private List<WebElement> users;
-    @FindBy(css = "#user-table>tbody>tr>td:nth-child(4)>div.user-descr>span")
-    private List<WebElement> descriptionTexts;
-    @FindBy(css = "#user-table>tbody>tr>td:nth-child(4)>div.user-descr>input[type='checkbox']")
-    private List<WebElement> checkBoxes;
-    @FindBy(css = "#user-table>tbody>tr>td:nth-child(2)>select")
-    public List<WebElement> numberType;
-    private static final String DROPDOWN_LIST = "//option[contains(., 'Admin')]";
-    private static final String USERS_LIST = "//tbody//a";
-    private static final String DESCRIPTION_TEXT_LIST = "//tbody//span";
-    private static final String CHECKBOXES_LIST = "//tbody//input";
+    @FindBy(xpath = "//option[contains(., 'Admin')]")
+    private List<WebElement> dropDownList;
+    @FindBy(xpath = "//tbody//a")
+    private List<WebElement> usersList;
+    @FindBy(xpath = "//tbody//span")
+    private List<WebElement> descriptionTestsList;
+    @FindBy(xpath = "//tbody//input")
+    private List<WebElement> checkboxesList;
+    @FindBy(xpath = "//td[contains(text(),'1' )]/following-sibling::td/select/option")
+    private List<WebElement> optionsDropDown;
 
-    public UserTablePage(WebDriver driver) {
-        super(driver);
+    public UserTablePage() {
+
     }
 
-    public List<WebElement> getUsers() {
-        return users;
+    public List<WebElement> getDropDownList() {
+        return dropDownList;
     }
 
-
-    public List<WebElement> getCheckBoxes() {
-        return checkBoxes;
+    public List<WebElement> getUsersList() {
+        return usersList;
     }
 
-    public List<WebElement> getUserTable() {
-        return userTable;
+    public List<WebElement> getDescriptionTestsList() {
+        return descriptionTestsList;
     }
 
-    public List<WebElement> getNumberType() {
-        return numberType;
+    public List<WebElement> getCheckboxesList() {
+        return checkboxesList;
     }
 
-    private List<WebElement> userTable;
+    public List<WebElement> getOptionsDropDown() {
+        return optionsDropDown;
+    }
 
     public WebElement getVipUserTableLogRow() {
         return vipUserTableLogRow;
@@ -64,27 +64,7 @@ public class UserTablePage extends AbstractPage {
     }
 
     public String getBrowserTitle() {
-        return driver.getTitle();
-    }
-
-    public List<WebElement> getDropDowns() {
-        userTable = driver.findElements(By.xpath(DROPDOWN_LIST));
-        return userTable;
-    }
-
-    public List<WebElement> getUserNames() {
-        userTable = driver.findElements(By.xpath(USERS_LIST));
-        return userTable;
-    }
-
-    public List<WebElement> getDescriptionTexts() {
-        userTable = driver.findElements(By.xpath(DESCRIPTION_TEXT_LIST));
-        return userTable;
-    }
-
-    public List<WebElement> getAllCheckboxes() {
-        userTable = driver.findElements(By.xpath(CHECKBOXES_LIST));
-        return userTable;
+        return DriverManager.getDriver().getTitle();
     }
 
     public List<WebElement> getDropDownValues() {
@@ -92,6 +72,6 @@ public class UserTablePage extends AbstractPage {
         list.add(adminCheckbox);
         list.add(userCheckbox);
         list.add(managerCheckbox);
-        return null;
+        return list;
     }
 }

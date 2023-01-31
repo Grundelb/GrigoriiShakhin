@@ -19,8 +19,7 @@ public class LeftMenuPage extends AbstractPage {
     @FindBy(partialLinkText = "Elements packs")
     private WebElement elementsPacksLeftMenu;
 
-    public LeftMenuPage(WebDriver driver) {
-        super(driver);
+    public LeftMenuPage() {
     }
 
     public List<WebElement> verifyLeftMenu() {

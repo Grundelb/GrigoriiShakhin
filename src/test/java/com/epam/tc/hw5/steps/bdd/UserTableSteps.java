@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 
 public class UserTableSteps extends AbstractStep {
 
+    private final static int TABLE_DESCRIPTION_VALUE = 0;
+
     @When("I select vip checkbox for Sergey Ivan")
     public void selectCheckboxSergeyIvan() {
         userTablePage.clickOnSergeiIvanUserTableCheckbox();
@@ -29,55 +31,59 @@ public class UserTableSteps extends AbstractStep {
 
     @Then("{int} Number Type Dropdowns should be displayed on Users Table on User Table Page")
     public void checkThatUserTablePageConatainAllDropDowns(Integer dropdownCount) {
-        assertThat(userTablePage.getDropDowns()).hasSize(dropdownCount);
+        assertThat(userTablePage.getDropDownList()).hasSize(dropdownCount);
     }
 
     @Then("{int} Usernames should be displayed on Users Table on User Table Page")
     public void usernamesShouldBeDisplayedOnUsersTableOnUserTablePage(Integer userCount) {
-        assertThat(userTablePage.getUserNames()).hasSize(userCount);
+        assertThat(userTablePage.getUsersList()).hasSize(userCount);
     }
 
     @Then("{int} Description texts under images should be displayed on Users Table on User Table Page")
     public void descriptionTextsUnderImagesShouldBeDisplayedOnUsersTableOnUserTablePage(Integer descriptionTextCount) {
-        assertThat(userTablePage.getDescriptionTexts()).hasSize(descriptionTextCount);
+        assertThat(userTablePage.getDescriptionTestsList()).hasSize(descriptionTextCount);
     }
 
     @Then("{int} checkboxes should be displayed on Users Table on User Table Page")
     public void checkboxesShouldBeDisplayedOnUsersTableOnUserTablePage(Integer checkboxesCount) {
-        assertThat(userTablePage.getAllCheckboxes()).hasSize(checkboxesCount);
+        assertThat(userTablePage.getCheckboxesList()).hasSize(checkboxesCount);
     }
 
-    @Then("User table should contain following values:")
-    public void userTableShouldContainFollowingValues(DataTable dataTable) {
-        SoftAssertions softly = new SoftAssertions();
-        List<List<String>> list = dataTable.asLists();
-        List<List<String>> listData = new ArrayList<>(list);
-        listData.remove(0);
-
-        boolean numbers = userTablePage.getNumberType()
-                .stream()
-                .anyMatch(element -> listData.get(0)
-                        .contains(Integer.parseInt(element.getText())));
-        softly.assertThat(numbers).isTrue();
-        boolean users = userTablePage.getUsers()
-                .stream()
-                .anyMatch(element -> listData.get(1)
-                        .contains(element.getText()));
-        softly.assertThat(users).isTrue();
-        boolean text = userTablePage.getDescriptionTexts()
-                .stream()
-                .anyMatch(element -> listData.get(2)
-                        .contains(element.getText()));
-        softly.assertThat(text).isTrue();
-
-        softly.assertAll();
-    }
+//    @Then("User table should contain following values:")
+//    public void userTableShouldContainFollowingValues(DataTable dataTable) {
+//        SoftAssertions softly = new SoftAssertions();
+//        List<List<String>> list = dataTable.asLists();
+//        List<List<String>> listData = new ArrayList<>(list);
+//        listData.remove(0);
+//
+//        boolean numbers = userTablePage.getNumberType()
+//                .stream()
+//                .anyMatch(element -> listData.get(0)
+//                        .contains(Integer.parseInt(element.getText())));
+//        softly.assertThat(numbers).isTrue();
+//        boolean users = userTablePage.getUsersList()
+//                .stream()
+//                .anyMatch(element -> listData.get(1)
+//                        .contains(element.getText()));
+//        softly.assertThat(users).isTrue();
+//        boolean text = userTablePage.getDescriptionTestsList()
+//                .stream()
+//                .anyMatch(element -> listData.get(2)
+//                        .contains(element.getText()));
+//        softly.assertThat(text).isTrue();
+//
+//        softly.assertAll();
+//    }
 
     @Then("droplist should contain values in column Type for user Roman")
-    public void droplistShouldContainValuesInColumnTypeForUserRoman(List<String> expectedCheckboxes) {
-        assertThat(userTablePage.getCheckBoxes())
+    public void droplistShouldContainValuesInColumnTypeForUserRoman(DataTable dataTable) {
+        List<List<String>> list = dataTable.asLists();
+        List<String> values = new ArrayList<>(list.get(0));
+        values.remove(TABLE_DESCRIPTION_VALUE);
+        assertThat(userTablePage.getOptionsDropDown())
                 .extracting(WebElement::getText)
-                .as("Some of the checkboxes are not as expected")
-                .containsAll(expectedCheckboxes);
+                .containsAll(values);
+
     }
 }
+

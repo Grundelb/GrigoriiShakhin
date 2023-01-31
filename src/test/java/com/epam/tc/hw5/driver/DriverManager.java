@@ -11,6 +11,7 @@ public class DriverManager {
 
     private static WebDriver driver;
     private static final int PAGE_LOAD_TIMEOUT = 20;
+    private static ThreadLocal<WebDriver> webDriverTreadLocal = new ThreadLocal<>();
 
     private DriverManager() {
     }
@@ -20,16 +21,16 @@ public class DriverManager {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-        TestContext.getInstance().set("driver", driver);
+        webDriverTreadLocal.set(driver);
     }
 
     public static WebDriver getDriver() {
-        return TestContext.getInstance().get("driver", ChromeDriver.class);
+        return webDriverTreadLocal.get();
     }
 
     public static void quitDriver() {
         Optional.ofNullable(getDriver()).ifPresent(webDriver ->
                 webDriver.quit());
-        TestContext.getInstance().clear();
+        webDriverTreadLocal.remove();
     }
 }

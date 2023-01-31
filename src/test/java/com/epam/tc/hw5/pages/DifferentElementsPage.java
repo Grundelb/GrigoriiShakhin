@@ -32,8 +32,7 @@ public class DifferentElementsPage extends AbstractPage {
     @FindBy(xpath = "//ul[@class='panel-body-list logs']")
     private WebElement logsPanelList;
 
-    public DifferentElementsPage(WebDriver driver) {
-        super(driver);
+    public DifferentElementsPage() {
     }
 
     public void clickOnCheckbox(String string) {

@@ -1,10 +1,6 @@
 package com.epam.tc.hw5.steps.bdd;
 
-import com.epam.tc.hw5.common.TestContext;
-import com.epam.tc.hw5.driver.DriverManager;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GeneralSteps extends AbstractStep {
 

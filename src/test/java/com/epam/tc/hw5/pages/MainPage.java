@@ -2,9 +2,13 @@ package com.epam.tc.hw5.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.epam.tc.hw5.common.TestContext;
+import com.epam.tc.hw5.driver.DriverManager;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
@@ -37,24 +41,23 @@ public class MainPage extends AbstractPage {
     @FindBy(id = "frame-button")
     private WebElement frameButton;
 
-    public MainPage(WebDriver driver) {
-        super(driver);
+    public MainPage() {
     }
 
     public void switchToFrame() {
-        driver.switchTo().frame(frame);
+        DriverManager.getDriver().switchTo().frame(frame);
     }
 
     public void switchToHomePage() {
-        driver.switchTo().defaultContent();
+        DriverManager.getDriver().switchTo().defaultContent();
     }
 
     public void openPage() {
-        driver.get(HOMEPAGE_URL);
+        DriverManager.getDriver().get(HOMEPAGE_URL);
     }
 
     public String getBrowserTitle() {
-        return driver.getTitle();
+        return DriverManager.getDriver().getTitle();
     }
 
     public List<WebElement> getIconsHomePage() {
