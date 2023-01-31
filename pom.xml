@@ -64,6 +64,18 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j-simple.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.10.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.10.1</version>
+        </dependency>
 
     </dependencies>
 
@@ -84,21 +96,27 @@
             </properties>
         </profile>
         <profile>
-            <id>hw3</id>
+            <id>Mainsuite</id>
             <properties>
                 <suite.xml.file>test_calc.xml</suite.xml.file>
             </properties>
         </profile>
         <profile>
-            <id>FullRegression</id>
+            <id>ex1ex2</id>
             <properties>
-                <suite.xml.file>hwCalc.xml</suite.xml.file>
+                <suite.xml.file>ex1ex2.xml</suite.xml.file>
             </properties>
         </profile>
         <profile>
             <id>hw4</id>
             <properties>
                 <suite.xml.file>hw4.xml</suite.xml.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw5</id>
+            <properties>
+                <suite.xml.file>hw5.xml</suite.xml.file>
             </properties>
         </profile>
     </profiles>
@@ -110,6 +128,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.basedir}/src/test/resources/${suite.xml.file}</suiteXmlFile>
                     </suiteXmlFiles>
